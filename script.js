@@ -12,55 +12,73 @@ function getComputerChoice() {
     return choice;
 }
 
-
 function getHumanChoice() {
     let choice = prompt("Choose rock, paper or scissors");
     console.log(`You chose: ${choice}`)
     return choice.toLowerCase();
 }
 
-
-let humanScore = 0;
-let computerScore = 0;
-
 function playRound(humanChoice, computerChoice) {
     let message = '';
 
     if(humanChoice === computerChoice){
-            return 'It\'s a draw!';
-        } 
+        return 'It\'s a draw!';
+    } 
 
     switch(computerChoice) {
     case 'rock':
         if (humanChoice === 'scissors') {
-            message = 'You lose! Rock breaks Scissors';
-            computerScore++;
+            message = 'You Lose! Rock breaks Scissors';
         } else if (humanChoice === 'paper') {
             message = 'You Win! Paper covers Rock';
-            humanScore++;
         }
         break;
     case 'paper':
         if (humanChoice === 'scissors') {
             message = 'You Win! Scissors cut Paper';
-            humanScore++;
         } else if (humanChoice === 'rock') {
-            message = 'You lose! Paper covers Rock';
-            computerScore++;
+            message = 'You Lose! Paper covers Rock';
         }
         break;
     case 'scissors':
         if (humanChoice === 'paper') {
-            message = 'You lose! Scissors cut Paper';
-            computerScore++;
+            message = 'You Lose! Scissors cut Paper';
         } else if (humanChoice === 'rock') {
             message = 'You Win! Rock breaks Scissors';
-            humanScore++;
         }
         break;
     }
+    
     return message;
-
 }
 
-console.log(playRound(getHumanChoice(), getComputerChoice()));
+
+
+function playGame() {
+
+    let humanScore = 0;
+    let computerScore = 0;
+    let draw = 0;
+      
+    for (let index = 0; index < 5; index++) { 
+        let humanSelection = getHumanChoice();
+        let computerSelection = getComputerChoice();
+        let round = playRound(humanSelection, computerSelection);  
+        
+        console.log(round);
+
+        if (round.includes('You Win')) {
+            humanScore++;
+        } else if (round.includes('You Lose')){
+            computerScore++;
+        } else {
+            draw++;
+        }   
+    }
+    
+    console.log(humanScore);
+    console.log(computerScore);
+    console.log(draw);
+}
+
+playGame();
