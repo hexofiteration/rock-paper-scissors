@@ -60,21 +60,20 @@ function playGame() {
     let computerScore = 0;
     let draw = 0;
       
-    for (let index = 0; index < 5; index++) { 
-        let humanSelection = getHumanChoice();
-        let computerSelection = getComputerChoice();
-        let round = playRound(humanSelection, computerSelection);  
-        
-        console.log(round);
 
-        if (round.includes('You Win')) {
-            humanScore++;
-        } else if (round.includes('You Lose')){
-            computerScore++;
-        } else {
-            draw++;
-        }   
-    }
+    let humanSelection = getHumanChoice();
+    let computerSelection = getComputerChoice();
+    let round = playRound(humanSelection, computerSelection);  
+        
+    console.log(round);
+
+    if (round.includes('You Win')) {
+        humanScore++;
+    } else if (round.includes('You Lose')){
+        computerScore++;
+    } else {
+        draw++;
+    }   
     
     console.log(humanScore);
     console.log(computerScore);
